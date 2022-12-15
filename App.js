@@ -1,12 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
+import * as Font from 'expo-font';
 import { useKeepAwake } from 'expo-keep-awake';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Linking, Platform, StyleSheet, Text, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const PERSISTENCE_KEY = 'NAVIGATION_STATE_V1';
 
@@ -18,7 +19,7 @@ export default function App() {
 
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded] = Font.useFonts({
     'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
     'NotoSans-Regular': require('./assets/fonts/NotoSans-Regular.ttf'),
   });
@@ -67,10 +68,12 @@ export default function App() {
           AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
         }
       >
-        <View style={styles.container} onLayout={onLayoutRootView}>
-          <Text>Open up App.js to start working on your app!</Text>
-          <StatusBar style="auto" />
-        </View>
+        <SafeAreaProvider>
+          <View style={styles.container} onLayout={onLayoutRootView}>
+            <Text>Open up App.js to start working on your app!</Text>
+            <StatusBar style="auto" />
+          </View>
+        </SafeAreaProvider>
       </NavigationContainer>
     </PaperProvider>
   );
