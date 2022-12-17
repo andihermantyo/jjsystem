@@ -5,9 +5,11 @@ import { useKeepAwake } from 'expo-keep-awake';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Linking, Platform, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import usePersistanceState from './hooks/usePersistanceState';
 
 const PERSISTENCE_KEY = 'NAVIGATION_STATE_V1';
 
@@ -17,44 +19,18 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   useKeepAwake();
 
-  const [isReady, setIsReady] = React.useState(false);
-  const [initialState, setInitialState] = React.useState();
   const [fontsLoaded] = Font.useFonts({
     'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
     'NotoSans-Regular': require('./assets/fonts/NotoSans-Regular.ttf'),
   });
-
-  React.useEffect(() => {
-    const restoreState = async () => {
-      try {
-        const initialUrl = await Linking.getInitialURL();
-
-        if (Platform.OS !== 'web' && initialUrl == null) {
-          // Only restore state if there's no deep link and we're not on web
-          const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
-          const state = savedStateString
-            ? JSON.parse(savedStateString)
-            : undefined;
-
-          if (state !== undefined) {
-            setInitialState(state);
-          }
-        }
-      } finally {
-        setIsReady(true);
-      }
-    };
-
-    if (!isReady) {
-      restoreState();
-    }
-  }, [isReady]);
 
   const onLayoutRootView = React.useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
+
+  const { isReady, initialState } = usePersistanceState(PERSISTENCE_KEY);
 
   if (!fontsLoaded || !isReady) {
     return null;
