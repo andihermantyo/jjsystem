@@ -5,9 +5,9 @@ import { useKeepAwake } from 'expo-keep-awake';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import usePersistanceState from './hooks/usePersistanceState';
 
@@ -38,19 +38,19 @@ export default function App() {
 
   return (
     <PaperProvider>
-      <NavigationContainer
-        initialState={initialState}
-        onStateChange={(state) =>
-          AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
-        }
-      >
-        <SafeAreaProvider>
-          <View style={styles.container} onLayout={onLayoutRootView}>
+      <SafeAreaProvider>
+        <NavigationContainer
+          initialState={initialState}
+          onStateChange={(state) =>
+            AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+          }
+        >
+          <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
             <Text>Open up App.js to start working on your app!</Text>
             <StatusBar style="auto" />
-          </View>
-        </SafeAreaProvider>
-      </NavigationContainer>
+          </SafeAreaView>
+        </NavigationContainer>
+      </SafeAreaProvider>
     </PaperProvider>
   );
 }
