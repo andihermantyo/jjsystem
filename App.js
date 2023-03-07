@@ -38,9 +38,9 @@ export default function App() {
               <Text style={{ fontFamily: 'NotoSans-Regular' }}>
                 Open up App.js to start working on your app!
               </Text>
-              <StatusBar style="auto" />
             </SafeAreaView>
           </NavigationContainer>
+          <StatusBar style="auto" />
         </SafeAreaProvider>
       </PaperProvider>
     );
