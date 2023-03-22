@@ -7,7 +7,7 @@ export default function usePersistanceState(persistanceKey) {
   const [initialState, setInitialState] = React.useState();
 
   React.useEffect(() => {
-    const restoreState = async () => {
+    async function restoreState() {
       try {
         const initialUrl = await Linking.getInitialURL();
 
@@ -22,10 +22,13 @@ export default function usePersistanceState(persistanceKey) {
             setInitialState(state);
           }
         }
+      } catch (e) {
+        // We might want to provide this error information to an error reporting service
+        console.warn(e);
       } finally {
         setIsReady(true);
       }
-    };
+    }
 
     if (!isReady) {
       restoreState();

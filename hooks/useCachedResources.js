@@ -1,21 +1,35 @@
+import { FontAwesome } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 export default function useCachedResources() {
-  // Keep the splash screen visible while we fetch resources
-  SplashScreen.preventAutoHideAsync();
+  const [isLoadingComplete, setLoadingComplete] = useState(false);
 
-  const [fontsLoaded] = Font.useFonts({
-    'Inter-Black': require('../assets/fonts/Inter-Black.otf'),
-    'NotoSans-Regular': require('../assets/fonts/NotoSans-Regular.ttf'),
-  });
+  // Load any resources or data that we need prior to rendering the app
+  useEffect(() => {
+    async function loadResourcesAndDataAsync() {
+      try {
+        SplashScreen.preventAutoHideAsync();
 
-  const onLayoutRootView = React.useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
+        // Load fonts
+        await Font.loadAsync({
+          ...FontAwesome.font,
+          'Inter-Black': require('../assets/fonts/Inter-Black.otf'),
+          'NotoSans-Regular': require('../assets/fonts/NotoSans-Regular.ttf'),
+          'SpaceMono-Regular': require('../assets/fonts/SpaceMono-Regular.ttf'),
+        });
+      } catch (e) {
+        // We might want to provide this error information to an error reporting service
+        console.warn(e);
+      } finally {
+        setLoadingComplete(true);
+        SplashScreen.hideAsync();
+      }
     }
-  }, [fontsLoaded]);
 
-  return { fontsLoaded, onLayoutRootView };
+    loadResourcesAndDataAsync();
+  }, []);
+
+  return isLoadingComplete;
 }
