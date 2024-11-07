@@ -22,6 +22,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0844e46b-51e1-4e45-8c97-8ea9ad4d1d5f"
+      }
+    },
+    "owner": "andihermantyo"
   }
 }
