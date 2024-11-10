@@ -36,4 +36,10 @@ export default ({ config }) => ({
   android: {
     package: getUniqueIdentifier(),
   },
+  updates: {
+    url: 'https://u.expo.dev/0844e46b-51e1-4e45-8c97-8ea9ad4d1d5f',
+  },
+  runtimeVersion: {
+    policy: 'appVersion',
+  },
 });
