@@ -8,7 +8,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "eslint .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "cross-env APP_VARIANT=development expo start",
+    "prev": "cross-env APP_VARIANT=preview expo start"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.3",
