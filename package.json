@@ -11,8 +11,7 @@
     "test": "jest --watchAll",
     "lint": "expo lint",
     "prepare": "husky",
-    "dev": "cross-env APP_VARIANT=development expo start",
-    "prev": "cross-env APP_VARIANT=preview expo start"
+    "dev": "cross-env APP_VARIANT=development expo start"
   },
   "jest": {
     "preset": "jest-expo"
