@@ -45,4 +45,5 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   runtimeVersion: {
     policy: 'appVersion',
   },
+  newArchEnabled: true,
 });
