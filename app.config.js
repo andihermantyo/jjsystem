@@ -42,4 +42,5 @@ export default ({ config }) => ({
   runtimeVersion: {
     policy: 'appVersion',
   },
+  newArchEnabled: true,
 });
