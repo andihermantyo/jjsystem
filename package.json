@@ -12,6 +12,8 @@
     "dev": "cross-env APP_VARIANT=development expo start"
   },
   "dependencies": {
+    "@dev-plugins/react-navigation": "^0.1.0",
+    "@expo/metro-runtime": "~4.0.0",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-masked-view/masked-view": "0.3.1",
     "@react-navigation/drawer": "^6.7.2",
@@ -25,6 +27,7 @@
     "expo-constants": "~17.0.3",
     "expo-dev-client": "~5.0.2",
     "expo-device": "~7.0.1",
+    "expo-keep-awake": "~14.0.1",
     "expo-linking": "~7.0.2",
     "expo-status-bar": "~2.0.0",
     "expo-system-ui": "~4.0.3",
@@ -41,9 +44,7 @@
     "react-native-svg": "15.8.0",
     "react-native-tab-view": "^3.5.2",
     "react-native-vector-icons": "^10.2.0",
-    "react-native-web": "~0.19.10",
-    "expo-keep-awake": "~14.0.1",
-    "@expo/metro-runtime": "~4.0.0"
+    "react-native-web": "~0.19.10"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -63,7 +64,9 @@
   "expo": {
     "doctor": {
       "reactNativeDirectoryCheck": {
-        "exclude": [ "@expo/metro-runtime" ]
+        "exclude": [
+          "@expo/metro-runtime"
+        ]
       }
     }
   }
