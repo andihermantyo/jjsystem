@@ -65,7 +65,8 @@
     "doctor": {
       "reactNativeDirectoryCheck": {
         "exclude": [
-          "@expo/metro-runtime"
+          "@expo/metro-runtime",
+          "@dev-plugins/react-navigation"
         ]
       }
     }
