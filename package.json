@@ -66,5 +66,14 @@
     "ts-node": "^10.9.2",
     "typescript": "~5.6.3"
   },
-  "private": true
+  "private": true,
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": [
+          "@dev-plugins/react-navigation"
+        ]
+      }
+    }
+  }
 }
