@@ -15,7 +15,8 @@
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "APP_VARIANT": "development"
+        "APP_VARIANT": "development",
+        "NODE_ENV": "development"
       },
       "channel": "development"
     },
@@ -23,13 +24,18 @@
       "extends": "base",
       "distribution": "internal",
       "env": {
-        "APP_VARIANT": "preview"
+        "APP_VARIANT": "preview",
+        "NODE_ENV": "test"
       },
       "channel": "preview"
     },
     "production": {
       "extends": "base",
       "autoIncrement": true,
+      "env": {
+        "APP_VARIANT": "production",
+        "NODE_ENV": "production"
+      },
       "channel": "production",
       "android": {
         "buildType": "apk"
