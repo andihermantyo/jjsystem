@@ -33,8 +33,7 @@
       "extends": "base",
       "autoIncrement": true,
       "env": {
-        "APP_VARIANT": "production",
-        "NODE_ENV": "production"
+        "APP_VARIANT": "production"
       },
       "channel": "production",
       "android": {
