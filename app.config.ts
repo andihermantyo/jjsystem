@@ -1,5 +1,9 @@
 import { ConfigContext, ExpoConfig } from 'expo/config';
-import 'ts-node/register'; // Add this to import TypeScript files
+//import 'ts-node/register'; // Add this to import TypeScript files
+
+if (process.env.APP_VARIANT !== 'production') {
+  require('ts-node').register();
+}
 
 const IS_DEV = process.env.APP_VARIANT === 'development';
 const IS_PREVIEW = process.env.APP_VARIANT === 'preview';
